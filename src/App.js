@@ -12,6 +12,7 @@ const INITIAL_STATE = {
   cardRare: '',
   cardTrunfo: false,
   hasTrunfo: false,
+  card: [],
 };
 
 class App extends React.Component {
@@ -39,7 +40,16 @@ class App extends React.Component {
 
   onSaveButtonClick() {
     const { cardTrunfo } = this.state;
-    this.setState({
+    this.setState((previousState) => ({
+      card: [...previousState.card, {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+      }],
       cardName: '',
       cardDescription: '',
       cardAttr1: 0,
@@ -49,7 +59,7 @@ class App extends React.Component {
       cardRare: '',
       cardTrunfo: false,
       hasTrunfo: '',
-    });
+    }));
     if (cardTrunfo === 'checked') {
       this.setState({ hasTrunfo: true });
     }
