@@ -2,13 +2,6 @@ import React from 'react';
 import Proptypes from 'prop-types';
 
 class Form extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      isActiveButton: false,
-    };
-  }
-
   render() {
     const { cardName,
       cardDescription,
@@ -19,83 +12,83 @@ class Form extends React.Component {
       onSaveButtonClick } = this.props;
     return (
       <form>
-        <label htmlFor="nome">
+        <label htmlFor="cardName">
           Nome
           <input
             type="text"
-            id="nome"
-            name="nome"
+            id="cardName"
+            name="cardName"
             value={ cardName }
             onChange={ onInputChange }
             data-testid="name-input"
             placeholder="Insira o nome da Carta"
           />
         </label>
-        <label htmlFor="descricao">
+        <label htmlFor="cardDescription">
           Descrição
           <input
             type="textarea"
-            id="descricao"
-            name="descricao"
+            id="cardDescription"
+            name="cardDescription"
             value={ cardDescription }
             onChange={ onInputChange }
             data-testid="description-input"
             placeholder="Insira a Descrição da Carta"
           />
         </label>
-        <label htmlFor="primeiroAtributo">
+        <label htmlFor="cardAttr1">
           Attr01
           <input
             type="number"
-            id="primeiroAtributo"
-            name="primeiroAtributo"
+            id="cardAttr1"
+            name="cardAttr1"
             value={ cardAttr1 }
             onChange={ onInputChange }
             data-testid="attr1-input"
             placeholder="Insira o Primeiro Atributo da Carta"
           />
         </label>
-        <label htmlFor="segundoAtributo">
+        <label htmlFor="cardAttr2">
           Attr02
           <input
             type="number"
-            id="segundoAtributo"
-            name="segundoAtributo"
+            id="cardAttr2"
+            name="cardAttr2"
             value={ cardAttr2 }
             onChange={ onInputChange }
             data-testid="attr2-input"
             placeholder="Insira o Segundo Atributo da Carta"
           />
         </label>
-        <label htmlFor="terceiroAtributo">
+        <label htmlFor="cardAttr3">
           Attr03
           <input
             type="number"
-            id="terceiroAtributo"
-            name="terceiroAtributo"
+            id="cardAttr3"
+            name="cardAttr3"
             value={ cardAttr3 }
             onChange={ onInputChange }
             data-testid="attr3-input"
             placeholder="Insira o Terceiro Atributo da Carta"
           />
         </label>
-        <label htmlFor="imagem">
+        <label htmlFor="cardImage">
           Imagem
           <input
             type="text"
-            id="imagem"
-            name="imagem"
+            id="cardImagem"
+            name="cardImagem"
             value={ cardImage }
             onChange={ onInputChange }
             data-testid="image-input"
             placeholder="Insira a imagem da Carta"
           />
         </label>
-        <label htmlFor="select">
+        <label htmlFor="cardRare">
           Raridade
           <select
-            id="select"
-            name="select"
+            id="cardRare"
+            name="cardRare"
             value={ cardRare }
             onChange={ onInputChange }
             data-testid="rare-input"
@@ -105,22 +98,22 @@ class Form extends React.Component {
             <option value="muito raro">muito raro</option>
           </select>
         </label>
-        <label htmlFor="checkbox">
+        <label htmlFor="cardTrunfo">
           Super Trunfo
           <input
             type="checkbox"
-            id="checkbox"
-            name="checkbox"
+            id="cardTrunfo"
+            name="cardTrunfo"
             checked={ cardTrunfo }
             onChange={ onInputChange }
             data-testid="trunfo-input"
           />
         </label>
-        <label htmlFor="button">
+        <label htmlFor="onSaveButtonClick">
           <button
             disabled={ isSaveButtonDisabled }
             onClick={ onSaveButtonClick }
-            name="button"
+            name="onSaveButtonClick"
             type="submit"
             data-testid="save-button"
           >
