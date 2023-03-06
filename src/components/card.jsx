@@ -17,7 +17,9 @@ class Card extends React.Component {
         <span data-testid="attr2-card">{cardAttr2}</span>
         <span data-testid="attr3-card">{cardAttr3}</span>
         <span data-testid="rare-card">{cardRare}</span>
-        <span data-testid="trunfo-card">{cardTrunfo}</span>
+        {
+          cardTrunfo && <span data-testid="trunfo-card">Super Trunfo</span>
+        }
       </section>
     );
   }

@@ -2,6 +2,13 @@ import React from 'react';
 import Proptypes from 'prop-types';
 
 class Form extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isActiveButton: false,
+    };
+  }
+
   render() {
     const { cardName,
       cardDescription,
@@ -118,7 +125,6 @@ class Form extends React.Component {
             data-testid="save-button"
           >
             Salvar
-
           </button>
         </label>
       </form>
