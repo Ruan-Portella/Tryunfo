@@ -26,7 +26,7 @@ class Form extends React.Component {
         </label>
         <label htmlFor="cardDescription">
           Descrição
-          <input
+          <textarea
             type="textarea"
             id="cardDescription"
             name="cardDescription"
@@ -76,8 +76,8 @@ class Form extends React.Component {
           Imagem
           <input
             type="text"
-            id="cardImagem"
-            name="cardImagem"
+            id="cardImage"
+            name="cardImage"
             value={ cardImage }
             onChange={ onInputChange }
             data-testid="image-input"
@@ -92,6 +92,7 @@ class Form extends React.Component {
             value={ cardRare }
             onChange={ onInputChange }
             data-testid="rare-input"
+            required
           >
             <option value="normal">normal</option>
             <option value="raro">raro</option>

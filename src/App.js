@@ -7,7 +7,7 @@ class App extends React.Component {
     super();
 
     this.onInputChange = this.onInputChange.bind(this);
-    this.onSaveButtonClick = this.onSaveButtonClick(this);
+    this.validate = this.validate.bind(this);
 
     this.state = {
       cardName: '',
@@ -18,8 +18,6 @@ class App extends React.Component {
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
-      hasTrunfo: false,
-      isSaveButtonDisabled: false,
     };
   }
 
@@ -33,14 +31,36 @@ class App extends React.Component {
     }));
   }
 
-  onSaveButtonClick() {
-    console.log(this);
+  validate() {
+    const { cardName, cardDescription, cardAttr1, cardAttr2,
+      cardAttr3, cardImage, cardRare } = this.state;
+
+    const sum = 210;
+    const max = 90;
+    const card01 = Number(cardAttr1);
+    const card02 = Number(cardAttr2);
+    const card03 = Number(cardAttr3);
+
+    const validateButton = cardName.length > 0
+      && cardDescription.length > 0
+      && cardImage.length > 0
+      && cardRare.length > 0
+      && card01 + card02 + card03 <= sum
+      && card01 <= max
+      && card02 <= max
+      && card03 <= max
+      && card01 >= 0
+      && card02 >= 0
+      && card03 >= 0;
+
+    return !validateButton;
   }
 
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo,
-      hasTrunfo, isSaveButtonDisabled } = this.state;
+      hasTrunfo } = this.state;
+
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -55,8 +75,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
           onInputChange={ this.onInputChange }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onSaveButtonClick={ this.onSaveButtonClick }
+          isSaveButtonDisabled={ this.validate() }
         />
         <Card
           cardName={ cardName }
