@@ -2,23 +2,26 @@ import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
 
+const INITIAL_STATE = {
+  cardName: '',
+  cardDescription: '',
+  cardAttr1: 0,
+  cardAttr2: 0,
+  cardAttr3: 0,
+  cardImage: '',
+  cardRare: '',
+  cardTrunfo: false,
+};
+
 class App extends React.Component {
   constructor() {
     super();
 
     this.onInputChange = this.onInputChange.bind(this);
     this.validate = this.validate.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
 
-    this.state = {
-      cardName: '',
-      cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
-      cardImage: '',
-      cardRare: '',
-      cardTrunfo: false,
-    };
+    this.state = INITIAL_STATE;
   }
 
   onInputChange({ target }) {
@@ -29,6 +32,10 @@ class App extends React.Component {
       ...previousState,
       [name]: value,
     }));
+  }
+
+  onSaveButtonClick() {
+    this.setState(INITIAL_STATE);
   }
 
   validate() {
@@ -76,6 +83,7 @@ class App extends React.Component {
           hasTrunfo={ hasTrunfo }
           onInputChange={ this.onInputChange }
           isSaveButtonDisabled={ this.validate() }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
