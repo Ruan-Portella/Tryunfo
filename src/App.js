@@ -12,7 +12,7 @@ const INITIAL_STATE = {
   cardRare: '',
   cardTrunfo: false,
   hasTrunfo: false,
-  card: [],
+  cards: [],
 };
 
 class App extends React.Component {
@@ -38,27 +38,19 @@ class App extends React.Component {
     }));
   }
 
-  onSaveButtonClick() {
+  onSaveButtonClick(card) {
     const { cardTrunfo } = this.state;
     this.setState((previousState) => ({
-      card: [...previousState.card, {
-        cardName,
-        cardDescription,
-        cardAttr1,
-        cardAttr2,
-        cardAttr3,
-        cardImage,
-        cardRare,
-      }],
+      cards: [...previousState.cards, card],
       cardName: '',
       cardDescription: '',
-      cardAttr1: 0,
-      cardAttr2: 0,
-      cardAttr3: 0,
+      cardAttr1: '',
+      cardAttr2: '',
+      cardAttr3: '',
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
-      hasTrunfo: '',
+      hasTrunfo: false,
     }));
     if (cardTrunfo === 'checked') {
       this.setState({ hasTrunfo: true });
@@ -93,7 +85,7 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo,
-      hasTrunfo } = this.state;
+      hasTrunfo, cards } = this.state;
 
     return (
       <div>
@@ -112,17 +104,20 @@ class App extends React.Component {
           isSaveButtonDisabled={ this.validate() }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          hasTrunfo={ hasTrunfo }
-          cardTrunfo={ cardTrunfo }
-        />
+        {cards.map((card) => (
+          <Card
+            key={ card.cardName }
+            cardName={ card.cardName }
+            cardDescription={ card.cardDescription }
+            cardAttr1={ card.cardAttr1 }
+            cardAttr2={ card.cardAttr2 }
+            cardAttr3={ card.cardAttr3 }
+            cardImage={ card.cardImage }
+            cardRare={ card.cardRare }
+            hasTrunfo={ card.hasTrunfo }
+            cardTrunfo={ card.cardTrunfo }
+          />
+        ))}
       </div>
     );
   }
