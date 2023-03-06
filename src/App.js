@@ -5,12 +5,13 @@ import Form from './components/Form';
 const INITIAL_STATE = {
   cardName: '',
   cardDescription: '',
-  cardAttr1: 0,
-  cardAttr2: 0,
-  cardAttr3: 0,
+  cardAttr1: '',
+  cardAttr2: '',
+  cardAttr3: '',
   cardImage: '',
   cardRare: '',
   cardTrunfo: false,
+  hasTrunfo: false,
 };
 
 class App extends React.Component {
@@ -27,7 +28,9 @@ class App extends React.Component {
   onInputChange({ target }) {
     const { name } = target;
 
-    const value = (target.type === 'checkbox') ? 'checked' : target.value;
+    const value = (target.type === 'checkbox')
+      ? 'checked' : target.value;
+
     this.setState((previousState) => ({
       ...previousState,
       [name]: value,
@@ -35,7 +38,21 @@ class App extends React.Component {
   }
 
   onSaveButtonClick() {
-    this.setState(INITIAL_STATE);
+    const { cardTrunfo } = this.state;
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardImage: '',
+      cardRare: '',
+      cardTrunfo: false,
+      hasTrunfo: '',
+    });
+    if (cardTrunfo === 'checked') {
+      this.setState({ hasTrunfo: true });
+    }
   }
 
   validate() {
@@ -93,8 +110,8 @@ class App extends React.Component {
           cardAttr3={ cardAttr3 }
           cardImage={ cardImage }
           cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
+          cardTrunfo={ cardTrunfo }
         />
       </div>
     );
