@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   cards: [],
   button: false,
   filterName: '',
+  filterRare: '',
 };
 
 class App extends React.Component {
@@ -27,6 +28,7 @@ class App extends React.Component {
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.dellCard = this.dellCard.bind(this);
     this.filterName = this.filterName.bind(this);
+    this.filterRare = this.filterRare.bind(this);
 
     this.state = INITIAL_STATE;
   }
@@ -64,6 +66,13 @@ class App extends React.Component {
 
   filterName = ({ target }) => {
     this.setState({ filterName: target.value });
+  };
+
+  filterRare = ({ target }) => {
+    if (target.value === 'todas') {
+      return;
+    }
+    this.setState({ filterRare: target.value });
   };
 
   validate() {
@@ -107,7 +116,7 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo,
-      hasTrunfo, cards, filterName } = this.state;
+      hasTrunfo, cards, filterName, filterRare } = this.state;
 
     return (
       <div>
@@ -139,13 +148,25 @@ class App extends React.Component {
         />
         <input
           type="text"
-          name="nameSearch"
+          name="FilterName"
           onChange={ this.filterName }
           data-testid="name-filter"
-          placeholder="Filtrar"
+          placeholder="Filtrar Por Nome"
         />
-        {cards
-          .filter((card) => card.cardName.includes(filterName))
+        <select data-testid="rare-filter" onChange={ this.filterRare }>
+          <option>todas</option>
+          <option>normal</option>
+          <option>raro</option>
+          <option>muito raro</option>
+        </select>
+        {cards.filter((card) => {
+          if (filterRare === 'todas') {
+            return card.cardRare.includes(filterRare);
+          } if (filterRare !== '') {
+            return card.cardRare === filterRare;
+          }
+          return card.cardName.includes(filterName);
+        })
           .map((card) => (
             <Filter
               key={ card.cardName }
