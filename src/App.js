@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './components/Card';
+import Filter from './components/FilterCards';
 import Form from './components/Form';
 
 const INITIAL_STATE = {
@@ -14,6 +15,7 @@ const INITIAL_STATE = {
   hasTrunfo: false,
   cards: [],
   button: false,
+  filterName: '',
 };
 
 class App extends React.Component {
@@ -24,6 +26,7 @@ class App extends React.Component {
     this.validate = this.validate.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.dellCard = this.dellCard.bind(this);
+    this.filterName = this.filterName.bind(this);
 
     this.state = INITIAL_STATE;
   }
@@ -32,7 +35,7 @@ class App extends React.Component {
     const { name } = target;
 
     const value = (target.type === 'checkbox')
-      ? 'checked' : target.value;
+      ? target.checked : target.value;
 
     this.setState((previousState) => ({
       ...previousState,
@@ -58,6 +61,10 @@ class App extends React.Component {
       this.setState({ hasTrunfo: true });
     }
   }
+
+  filterName = ({ target }) => {
+    this.setState({ filterName: target.value });
+  };
 
   validate() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
@@ -100,7 +107,7 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo,
-      hasTrunfo, cards } = this.state;
+      hasTrunfo, cards, filterName } = this.state;
 
     return (
       <div>
@@ -130,28 +137,22 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
         />
-        {cards.map((card) => (
-          <section key={ `${card.cardName} div` }>
-            <Card
+        <input
+          type="text"
+          name="nameSearch"
+          onChange={ this.filterName }
+          data-testid="name-filter"
+          placeholder="Filtrar"
+        />
+        {cards
+          .filter((card) => card.cardName.includes(filterName))
+          .map((card) => (
+            <Filter
               key={ card.cardName }
-              cardName={ card.cardName }
-              cardDescription={ card.cardDescription }
-              cardAttr1={ card.cardAttr1 }
-              cardAttr2={ card.cardAttr2 }
-              cardAttr3={ card.cardAttr3 }
-              cardImage={ card.cardImage }
-              cardRare={ card.cardRare }
-              cardTrunfo={ card.cardTrunfo }
-            />
-            <button
-              data-testid="delete-button"
-              type="button"
-              className={ card.cardName }
+              card={ card }
               onClick={ this.dellCard }
-            >
-              Excluir
-            </button>
-          </section>))}
+            />
+          ))}
       </div>
     );
   }
