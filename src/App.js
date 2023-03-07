@@ -17,6 +17,8 @@ const INITIAL_STATE = {
   button: false,
   filterName: '',
   filterRare: '',
+  filterTryunfo: false,
+  filterDisable: false,
 };
 
 class App extends React.Component {
@@ -27,8 +29,6 @@ class App extends React.Component {
     this.validate = this.validate.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.dellCard = this.dellCard.bind(this);
-    this.filterName = this.filterName.bind(this);
-    this.filterRare = this.filterRare.bind(this);
 
     this.state = INITIAL_STATE;
   }
@@ -70,9 +70,18 @@ class App extends React.Component {
 
   filterRare = ({ target }) => {
     if (target.value === 'todas') {
-      return;
+      this.setState({ filterRare: '' });
     }
     this.setState({ filterRare: target.value });
+  };
+
+  filterTryunfo = ({ target }) => {
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    if (value) {
+      this.setState({ filterTryunfo: true, filterDisable: true });
+    } else {
+      this.setState({ filterTryunfo: false, filterDisable: false });
+    }
   };
 
   validate() {
@@ -116,7 +125,8 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo,
-      hasTrunfo, cards, filterName, filterRare } = this.state;
+      hasTrunfo, cards, filterName, filterRare,
+      filterTryunfo, filterDisable } = this.state;
 
     return (
       <div>
@@ -152,16 +162,32 @@ class App extends React.Component {
           onChange={ this.filterName }
           data-testid="name-filter"
           placeholder="Filtrar Por Nome"
+          disabled={ filterDisable }
         />
-        <select data-testid="rare-filter" onChange={ this.filterRare }>
+        <select
+          data-testid="rare-filter"
+          onChange={ this.filterRare }
+          disabled={ filterDisable }
+        >
           <option>todas</option>
           <option>normal</option>
           <option>raro</option>
           <option>muito raro</option>
         </select>
+        <label htmlFor="Tryunfo" data-testid="trunfo-filter">
+          Super Trynufo
+          <input
+            id="Tryunfo"
+            type="checkbox"
+            onChange={ this.filterTryunfo }
+          />
+        </label>
         {cards.filter((card) => {
+          if (filterTryunfo === true) {
+            return card.cardTrunfo;
+          }
           if (filterRare === 'todas') {
-            return card.cardRare.includes(filterRare);
+            return this.filterRare;
           } if (filterRare !== '') {
             return card.cardRare === filterRare;
           }
