@@ -100,6 +100,7 @@ class Form extends React.Component {
           </select>
         </label>
         <label htmlFor="cardTrunfo">
+          Super Trunfo
           {
             hasTrunfo && <p>Você já tem um Super Trunfo em seu baralho</p>
           }
