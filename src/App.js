@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   cardAttr2: '',
   cardAttr3: '',
   cardImage: '',
-  cardRare: 'normal',
+  cardRare: '',
   cardTrunfo: false,
   hasTrunfo: false,
   cards: [],
@@ -118,6 +118,17 @@ class App extends React.Component {
             cardTrunfo={ card.cardTrunfo }
           />
         ))}
+        <Card
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
+        />
       </div>
     );
   }
