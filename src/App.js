@@ -23,7 +23,7 @@ class App extends React.Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.validate = this.validate.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
-    this.deleteCard = this.deleteCard.bind(this);
+    this.dellCard = this.dellCard.bind(this);
 
     this.state = INITIAL_STATE;
   }
@@ -84,7 +84,7 @@ class App extends React.Component {
     return !validateButton;
   }
 
-  deleteCard({ target }) {
+  dellCard({ target }) {
     const { cards } = this.state;
     const FindCard = cards
       .find((card) => card.cardName === target.className);
@@ -131,7 +131,7 @@ class App extends React.Component {
           hasTrunfo={ hasTrunfo }
         />
         {cards.map((card) => (
-          <div key={ `${card.cardName} div` }>
+          <section key={ `${card.cardName} div` }>
             <Card
               key={ card.cardName }
               cardName={ card.cardName }
@@ -147,11 +147,11 @@ class App extends React.Component {
               data-testid="delete-button"
               type="button"
               className={ card.cardName }
-              onClick={ this.deleteCard }
+              onClick={ this.dellCard }
             >
               Excluir
             </button>
-          </div>))}
+          </section>))}
       </div>
     );
   }
