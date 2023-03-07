@@ -100,7 +100,6 @@ class Form extends React.Component {
           </select>
         </label>
         <label htmlFor="cardTrunfo">
-          Super Trunfo
           {
             hasTrunfo && <p>Você já tem um Super Trunfo em seu baralho</p>
           }
@@ -146,9 +145,9 @@ class Form extends React.Component {
 Form.propTypes = {
   cardName: Proptypes.string.isRequired,
   cardDescription: Proptypes.string.isRequired,
-  cardAttr1: Proptypes.string.isRequired,
-  cardAttr2: Proptypes.string.isRequired,
-  cardAttr3: Proptypes.string.isRequired,
+  cardAttr1: Proptypes.number.isRequired,
+  cardAttr2: Proptypes.number.isRequired,
+  cardAttr3: Proptypes.number.isRequired,
   cardImage: Proptypes.string.isRequired,
   cardRare: Proptypes.string.isRequired,
   cardTrunfo: Proptypes.bool.isRequired,

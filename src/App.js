@@ -5,14 +5,15 @@ import Form from './components/Form';
 const INITIAL_STATE = {
   cardName: '',
   cardDescription: '',
-  cardAttr1: '',
-  cardAttr2: '',
-  cardAttr3: '',
+  cardAttr1: 0,
+  cardAttr2: 0,
+  cardAttr3: 0,
   cardImage: '',
   cardRare: '',
   cardTrunfo: false,
   hasTrunfo: false,
   cards: [],
+  button: false,
 };
 
 class App extends React.Component {
@@ -22,6 +23,7 @@ class App extends React.Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.validate = this.validate.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
 
     this.state = INITIAL_STATE;
   }
@@ -82,6 +84,19 @@ class App extends React.Component {
     return !validateButton;
   }
 
+  deleteCard({ target }) {
+    const { cards } = this.state;
+    const FindCard = cards
+      .find((card) => card.cardName === target.className);
+    if (FindCard.cardTrunfo) {
+      this.setState({ hasTrunfo: false });
+    }
+    const newCards = cards.filter((card) => card !== FindCard);
+    this.setState(() => ({
+      cards: newCards,
+    }));
+  }
+
   render() {
     const { cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo,
@@ -104,20 +119,6 @@ class App extends React.Component {
           isSaveButtonDisabled={ this.validate() }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
-        {cards.map((card) => (
-          <Card
-            key={ card.cardName }
-            cardName={ card.cardName }
-            cardDescription={ card.cardDescription }
-            cardAttr1={ card.cardAttr1 }
-            cardAttr2={ card.cardAttr2 }
-            cardAttr3={ card.cardAttr3 }
-            cardImage={ card.cardImage }
-            cardRare={ card.cardRare }
-            hasTrunfo={ card.hasTrunfo }
-            cardTrunfo={ card.cardTrunfo }
-          />
-        ))}
         <Card
           cardName={ cardName }
           cardDescription={ cardDescription }
@@ -129,6 +130,28 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
         />
+        {cards.map((card) => (
+          <div key={ `${card.cardName} div` }>
+            <Card
+              key={ card.cardName }
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ card.cardTrunfo }
+            />
+            <button
+              data-testid="delete-button"
+              type="button"
+              className={ card.cardName }
+              onClick={ this.deleteCard }
+            >
+              Excluir
+            </button>
+          </div>))}
       </div>
     );
   }
