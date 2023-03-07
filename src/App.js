@@ -35,7 +35,7 @@ class App extends React.Component {
     const { name } = target;
 
     const value = (target.type === 'checkbox')
-      ? target.checked : target.value;
+      ? 'checked' : target.value;
 
     this.setState((previousState) => ({
       ...previousState,
