@@ -1,0 +1,154 @@
+#cardContentSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+}
+
+#cardcontentname {
+    width: 90%;
+    height: 35px;
+    background: #023031;
+    border-radius: 2%;
+    justify-content: center;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 10px 1px 1px 1px;
+}
+
+#description {
+    font-size: 12px;
+    height: 18px;
+    margin: auto;
+    text-align: center;
+}
+
+
+#attribute01{
+    text-align: center;
+    border-radius: 10%;
+    background: #023031;
+    padding: 6px 10px;
+    color: white;
+    font-size: 20px;
+    width: 23px;
+}
+
+#ataque {
+    color: black;
+    background: #F0F2F5;
+    padding: 6px 79.33px;
+    font-size: 20px; 
+}
+
+#attribute02 {
+    text-align: center;
+    border-radius: 10%;
+    color: white;
+    background: #023031;
+    padding: 6px 10px;
+    font-size: 20px;
+    width: 23px;
+}
+
+#ataqueAttribute {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#defesa {
+    color: black;
+    background: #F0F2F5;
+    padding: 6px 81.11px;
+    font-size: 20px; 
+}
+
+#defesaAttribute {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}
+
+#attribute03 {
+    text-align: center;
+    border-radius: 10%;
+    color: white;
+    background: #023031;
+    font-size: 20px;
+    padding: 6px 10px;
+    width: 23px;
+}
+
+#magia {
+    color: black;
+    background: #F0F2F5;
+    padding: 6px 83.59px;
+    font-size: 20px; 
+}
+
+#magiaAttribute{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#names {
+    display: flex;
+    flex-direction: column;
+}
+
+#cardNameSection {
+    width: 90%;
+    height: 545px;
+    padding: 15px 15px 1px;
+    background: white;
+    box-shadow: 0px 3.8px 18.4px rgba(0,0,0,0.25);
+    border-radius: 2%;
+    margin: 10px;
+    position: relative;
+}
+
+#cardColorSection{
+    width: 100%;
+    background: #036B52;
+    border-radius: 2%;
+    color: white;
+    height: 510px;
+}
+
+#imagecardSection {
+    width: 260px;
+    height: 210px;
+    margin: 0 auto;
+    display: flex;
+}
+
+#cardRareInput {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+     align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 23px;
+    margin-bottom: 10px;
+
+}
+
+#cardTrunfos {
+   height: 70px;
+   width: 80px;
+   display: flex;
+   flex-direction: column;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   margin-right: -25px;
+   margin-bottom: -15px;
+}

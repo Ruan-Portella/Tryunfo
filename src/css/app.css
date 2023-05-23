@@ -1,0 +1,125 @@
+body {
+    background-color: #053429;
+    margin: 0;
+    padding: 0;
+}
+
+#image-Header {
+    margin: auto;
+    align-items: center;
+    display: flex;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#main-content {
+    background-color: white;
+    box-shadow: 0px 4px 19px rgba(0,0,0,0.8);
+    border-radius: 20px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#h2-card{
+    width: 90%;
+    height: 36px;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #2FC18C;
+    align-items: center;
+    margin: auto;
+    margin-top: 48px;
+    margin-bottom: 40px;
+
+}
+
+#card {
+    width: 338px;
+    height: 520px;
+    padding: 15px 15px 1px;
+    background: white;
+    box-shadow: 0px 3.8px 18.4px rgba(0,0,0,0.25);
+    border-radius: 2%;
+}
+
+#cardColor{
+    width: 338px;
+    height: 500px;
+    background: #036B52;
+    border-radius: 2%;
+    color: white;
+
+}
+
+#filtercards {
+   background: #036B52;
+   width: 90%;
+   height: 75px;
+   box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+   border-radius: 2%;
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: space-around;
+   align-items: center;
+   margin: auto;
+   margin-top: 50px;
+   margin-bottom: 30px;
+
+}
+
+#filterName{
+    width: 20%;
+    height: 36px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    color: white;
+    align-items: center;
+    display: flex;
+}
+
+#filterNameText{
+    width: 20%;
+    height: 32px;
+    padding: 0px;
+}
+
+#filterRare{
+    width: 20%;
+    height: 32px;
+    padding: 0px;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px solid white;
+    border-radius: 2%;
+}
+
+#checkbox {
+    font-weight: 400;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+}
+
+#mainCardsConten {
+    display: flex;
+    flex-flow: row wrap;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+#mainconteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './components/Card';
 import Filter from './components/FilterCards';
 import Form from './components/Form';
+import './css/app.css';
 
 const INITIAL_STATE = {
   cardName: '',
@@ -9,7 +10,7 @@ const INITIAL_STATE = {
   cardAttr1: 0,
   cardAttr2: 0,
   cardAttr3: 0,
-  cardImage: '',
+  cardImage: 'https://i.imgur.com/Cp0dBW8.png',
   cardRare: '',
   cardTrunfo: false,
   hasTrunfo: false,
@@ -37,7 +38,7 @@ class App extends React.Component {
     const { name } = target;
 
     const value = (target.type === 'checkbox')
-      ? 'checked' : target.value;
+      ? target.checked : target.value;
 
     this.setState((previousState) => ({
       ...previousState,
@@ -54,13 +55,11 @@ class App extends React.Component {
       cardAttr1: 0,
       cardAttr2: 0,
       cardAttr3: 0,
-      cardImage: '',
+      cardImage: 'https://i.imgur.com/Cp0dBW8.png',
       cardRare: '',
-      cardTrunfo: false,
-      hasTrunfo: false,
     }));
-    if (cardTrunfo === 'checked') {
-      this.setState({ hasTrunfo: true });
+    if (cardTrunfo) {
+      this.setState({ hasTrunfo: true, cardTrunfo: false });
     }
   }
 
@@ -129,77 +128,94 @@ class App extends React.Component {
       filterTryunfo, filterDisable } = this.state;
 
     return (
-      <div>
-        <h1>Tryunfo</h1>
-        <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
-          onInputChange={ this.onInputChange }
-          isSaveButtonDisabled={ this.validate() }
-          onSaveButtonClick={ this.onSaveButtonClick }
-        />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
-        />
-        <input
-          type="text"
-          name="FilterName"
-          onChange={ this.filterName }
-          data-testid="name-filter"
-          placeholder="Filtrar Por Nome"
-          disabled={ filterDisable }
-        />
-        <select
-          data-testid="rare-filter"
-          onChange={ this.filterRare }
-          disabled={ filterDisable }
-        >
-          <option>todas</option>
-          <option>normal</option>
-          <option>raro</option>
-          <option>muito raro</option>
-        </select>
-        <label htmlFor="Tryunfo" data-testid="trunfo-filter">
-          Super Trynufo
-          <input
-            id="Tryunfo"
-            type="checkbox"
-            onChange={ this.filterTryunfo }
+      <div id="mainconteudo">
+        <div>
+          <img width="300px" height="240px" id="image-Header" src="https://i.imgur.com/Cp0dBW8.png" alt="Imagem Logo" />
+        </div>
+        <section id="main-content">
+          <Form
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+            hasTrunfo={ hasTrunfo }
+            onInputChange={ this.onInputChange }
+            isSaveButtonDisabled={ this.validate() }
+            onSaveButtonClick={ this.onSaveButtonClick }
           />
-        </label>
-        {cards.filter((card) => {
-          if (filterTryunfo === true) {
-            return card.cardTrunfo;
-          }
-          if (filterRare === 'todas') {
-            return this.filterRare;
-          } if (filterRare !== '') {
-            return card.cardRare === filterRare;
-          }
-          return card.cardName.includes(filterName);
-        })
-          .map((card) => (
-            <Filter
-              key={ card.cardName }
-              card={ card }
-              onClick={ this.dellCard }
+          <section id="card-content">
+            <h2 id="h2-card">Pré Visualização</h2>
+            <Card
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+              hasTrunfo={ hasTrunfo }
             />
-          ))}
+          </section>
+        </section>
+        {/* <h2>TODAS AS CARTAS</h2> */}
+        <section id="filtercards">
+          <p id="filterName">Filtros de Busca</p>
+          <input
+            type="text"
+            name="FilterName"
+            id="filterNameText"
+            onChange={ this.filterName }
+            data-testid="name-filter"
+            placeholder="Filtrar Por Nome"
+            disabled={ filterDisable }
+          />
+          <select
+            data-testid="rare-filter"
+            id="filterRare"
+            onChange={ this.filterRare }
+            disabled={ filterDisable }
+          >
+            <option>todas</option>
+            <option>normal</option>
+            <option>raro</option>
+            <option>muito raro</option>
+          </select>
+          <section id="checkbox">
+            <label htmlFor="Tryunfo" data-testid="trunfo-filter">
+              <input
+                id="Tryunfo"
+                type="checkbox"
+                onChange={ this.filterTryunfo }
+              />
+              Super Trybe Trunfo
+            </label>
+          </section>
+        </section>
+        <section id="mainCardsConten">
+          {cards.filter((card) => {
+            if (filterTryunfo === true) {
+              return card.cardTrunfo;
+            }
+            if (filterRare === 'todas') {
+              return this.filterRare;
+            } if (filterRare !== '') {
+              return card.cardRare === filterRare;
+            }
+            return card.cardName.includes(filterName);
+          })
+            .map((card) => (
+              <Filter
+                key={ card.cardName }
+                card={ card }
+                onClick={ this.dellCard }
+              />
+            ))}
+        </section>
       </div>
     );
   }

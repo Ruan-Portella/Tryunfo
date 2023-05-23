@@ -1,0 +1,113 @@
+#form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: 50px;
+    justify-content: center;
+}
+
+#title-form{
+    font-style: italic;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 29px;
+    color: #2FC18c;
+    text-align: center;
+    width: 100%;
+}
+
+#nameCard{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #3D495c;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#cardName{
+    width: 80%;
+    padding: 10px;
+    align-items: center;
+}
+
+#namedescription{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #3D495c;
+    display: flex;
+}
+
+#cardDescription{
+    width: 85%;
+    height: 80px;
+    background: white;
+    align-items: center;
+}
+
+#attributecard {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #3D495c;
+}
+
+#cardAttr1, #cardAttr2, #cardAttr3, #cardImage {
+    width: 53%;
+    height: 37px;
+    background: white;
+    border: 1px solid #29313D;
+    border-radius: 2px;
+    margin-left: 35px;
+}
+
+#cardAttr3{
+    margin-left: 42px;
+}
+
+#imagecard{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #3D495c;
+}
+
+#cardImage {
+    margin-left: 27px;
+}
+
+#rarecard {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #3D495c;
+    display: flex;
+}
+
+#cardRare {
+    width: 87%;
+    height: 40px;
+    margin-top: 5px;
+}
+
+#trunfobuttom{
+    display: flex;
+    width: 85%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#buttonform{
+    padding: 8px 32px;
+    background: #2FC18c;
+    width: 115px;
+    height: 40px;
+    border-radius: 2px;
+    color: white;
+}

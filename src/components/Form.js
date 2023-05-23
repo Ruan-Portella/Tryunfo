@@ -1,5 +1,6 @@
 import React from 'react';
 import Proptypes from 'prop-types';
+import '../css/form.css';
 
 class Form extends React.Component {
   render() {
@@ -11,10 +12,12 @@ class Form extends React.Component {
       isSaveButtonDisabled, onInputChange,
       onSaveButtonClick } = this.props;
     return (
-      <form>
+      <section id="form-content">
+        <h2 id="title-form">ADICIONE NOVA CARTA</h2>
         <label htmlFor="cardName">
-          Nome
+          <span id="nameCard">Nome</span>
           <input
+            maxLength="20"
             type="text"
             id="cardName"
             name="cardName"
@@ -25,9 +28,10 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="cardDescription">
-          Descrição
+          <span id="namedescription">Descrição</span>
           <textarea
             type="textarea"
+            maxLength="35"
             id="cardDescription"
             name="cardDescription"
             value={ cardDescription }
@@ -37,8 +41,10 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="cardAttr1">
-          Attr01
+          <span id="attributecard">Ataque</span>
           <input
+            min="1"
+            max="90"
             type="number"
             id="cardAttr1"
             name="cardAttr1"
@@ -49,8 +55,10 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="cardAttr2">
-          Attr02
+          <span id="attributecard">Defesa</span>
           <input
+            min="1"
+            max="90"
             type="number"
             id="cardAttr2"
             name="cardAttr2"
@@ -61,8 +69,10 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="cardAttr3">
-          Attr03
+          <span id="attributecard">Magia</span>
           <input
+            min="1"
+            max="90"
             type="number"
             id="cardAttr3"
             name="cardAttr3"
@@ -73,7 +83,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="cardImage">
-          Imagem
+          <span id="imagecard">Imagem</span>
           <input
             type="text"
             id="cardImage"
@@ -85,7 +95,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="cardRare">
-          Raridade
+          <span id="rarecard">Raridade</span>
           <select
             id="cardRare"
             name="cardRare"
@@ -99,44 +109,48 @@ class Form extends React.Component {
             <option value="muito raro">muito raro</option>
           </select>
         </label>
-        <label htmlFor="cardTrunfo">
-          {
-            hasTrunfo && <p>Você já tem um Super Trunfo em seu baralho</p>
-          }
-          {
-            !hasTrunfo
-              && <input
-                type="checkbox"
-                id="cardTrunfo"
-                name="cardTrunfo"
-                checked={ cardTrunfo }
-                onChange={ onInputChange }
-                data-testid="trunfo-input"
-              />
-          }
-        </label>
-        <label htmlFor="onSaveButtonClick">
-          <button
-            disabled={ isSaveButtonDisabled }
-            onClick={ () => onSaveButtonClick({
-              cardName,
-              cardDescription,
-              cardAttr1,
-              cardAttr2,
-              cardAttr3,
-              cardImage,
-              cardRare,
-              cardTrunfo,
-              hasTrunfo,
-            }) }
-            name="onSaveButtonClick"
-            type="submit"
-            data-testid="save-button"
-          >
-            Salvar
-          </button>
-        </label>
-      </form>
+        <section id="trunfobuttom">
+          <label htmlFor="cardTrunfo">
+            {
+              !hasTrunfo
+                ? (
+                  <p>
+                    <input
+                      type="checkbox"
+                      id="cardTrunfo"
+                      name="cardTrunfo"
+                      checked={ cardTrunfo }
+                      onChange={ onInputChange }
+                      data-testid="trunfo-input"
+                    />
+                    Super Trunfo
+                  </p>) : (<p>Você já tem um Super Trunfo em seu baralho</p>)
+            }
+          </label>
+          <label htmlFor="onSaveButtonClick">
+            <button
+              disabled={ isSaveButtonDisabled }
+              onClick={ () => onSaveButtonClick({
+                cardName,
+                cardDescription,
+                cardAttr1,
+                cardAttr2,
+                cardAttr3,
+                cardImage,
+                cardRare,
+                cardTrunfo,
+                hasTrunfo,
+              }) }
+              name="onSaveButtonClick"
+              type="submit"
+              data-testid="save-button"
+              id="buttonform"
+            >
+              Salvar
+            </button>
+          </label>
+        </section>
+      </section>
 
     );
   }

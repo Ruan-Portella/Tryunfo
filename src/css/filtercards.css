@@ -1,0 +1,15 @@
+#cardsfilter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+#buttomDelete{
+    width: 115px;
+    height: 40px;
+    background: #2FC18C;
+    border-radius: 2%;
+}
+

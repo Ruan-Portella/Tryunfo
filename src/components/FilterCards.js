@@ -1,6 +1,7 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import Card from './Card';
+import '../css/filtercards.css';
 
 class Filter extends React.Component {
   render() {
@@ -12,7 +13,7 @@ class Filter extends React.Component {
       cardAttr3, cardImage,
       cardRare, cardTrunfo } = card;
     return (
-      <section>
+      <section id="cardsfilter">
         <Card
           cardName={ cardName }
           cardDescription={ cardDescription }
@@ -26,6 +27,7 @@ class Filter extends React.Component {
         <button
           data-testid="delete-button"
           type="button"
+          id="buttomDelete"
           className={ cardName }
           onClick={ onClick }
         >
